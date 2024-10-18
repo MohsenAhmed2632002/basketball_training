@@ -22,27 +22,19 @@ class _ApiService implements ApiService {
   // final ParseErrorLogger? errorLogger;
 
   @override
-  Future<WeatherResponse> getMyWeather(
-    String apiKey,
-    String location,
-    int days,
-  ) async {
+  Future<MyWeatherModel> getMyWeather(String location) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'key': apiKey,
-      r'q': location,
-      r'days': days,
-    };
+    final queryParameters = <String, dynamic>{r'q': location};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<WeatherResponse>(Options(
+    final _options = _setStreamType<MyWeatherModel>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'forecast.json',
+          'https://api.weatherapi.com/v1/forecast.json?key=870b411017d94da8afe174640241210&q=30.0444,31.2357&days=8',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -51,10 +43,11 @@ class _ApiService implements ApiService {
           _dio.options.baseUrl,
           baseUrl,
         )));
+
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late WeatherResponse _value;
+    late MyWeatherModel _value;
     try {
-      _value = WeatherResponse.fromJson(_result.data!);
+      _value = MyWeatherModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       // errorLogger?.logError(e, s, _options);
       rethrow;

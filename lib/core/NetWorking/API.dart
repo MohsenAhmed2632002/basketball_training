@@ -1,11 +1,9 @@
 class APIConstants {
-    // رابط الأساس لطلبات الطقس
-  static const String apiBaseUrl = "https://api.weatherapi.com/v1/";
-  static const String apiKey = "f5e657f7a0484ab5b25173533231907";
-  
-  // مسار الحصول على التوقعات الجوية
-  static const String forecast = "forecast.json";
-
+  // static const String apiBaseUrl = "https://api.weatherapi.com/v1/";
+  static const String apiBaseUrl =
+      "https://api.weatherapi.com/v1/forecast.json?key=870b411017d94da8afe174640241210&q=30.0444,31.2357&days=8";
+  // static const String apiKey = "870b411017d94da8afe174640241210";
+  // static const String forecast = "forecast.json";
 }
 
 class ApiErrors {
